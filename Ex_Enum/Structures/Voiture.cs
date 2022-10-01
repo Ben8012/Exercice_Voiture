@@ -10,18 +10,10 @@ namespace Ex_Enum.Structures
     internal struct Voiture
     {
         private int _kilometrage;
-        public int Kilometrage
-        {
-            get
-            {
-                return _kilometrage;
-            }
-        }
+        public int Kilometrage { get {return _kilometrage; }}
 
-
-
-        public string Couleur { get; set; }
-        public int Puissance { get; set; }
+        private int _puissance;
+        public int Puissance { get { return _puissance; } }
 
         private Carburants _carburant;
         public Carburants Carburant { get { return _carburant; } }
@@ -29,12 +21,22 @@ namespace Ex_Enum.Structures
         private Marques _marque;
         public Marques Marque { get { return _marque; } }
 
-        public Voiture(Marques marque, string couleur, int puissance, Carburants carburant) : this()
+
+        public string? Couleur { get; set; }
+
+        public Voiture(Marques marque, int puissance, Carburants carburant):this()
         {
-            Couleur = couleur;
-            Puissance = puissance;
+            _puissance = puissance;
             _carburant = carburant;
             _marque = marque;
+            _kilometrage = 0;
+        }
+
+        public Voiture(Marques marque, int puissance): this()
+        {
+            _puissance = puissance;
+            _marque = marque;
+            _kilometrage = 0;
         }
 
         /// <summary>
@@ -46,6 +48,14 @@ namespace Ex_Enum.Structures
                 _kilometrage += 50;
             if (_marque.ToString() is "VW")
                 _kilometrage += 100;
+        }
+
+        public void boosterLaVoiture(int cheveaux)
+        {
+            if (cheveaux > _puissance)
+            {
+                _puissance = cheveaux;
+            }
         }
 
 
